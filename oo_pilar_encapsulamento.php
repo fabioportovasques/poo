@@ -57,6 +57,14 @@
 
 	class Filho extends Pai{
 
+
+		public function __construct (){
+			//Exibir os metodos do objeto
+			echo '<pre>';
+			print_r(get_class_methods($this));
+			echo '</pre>';
+		}
+
 		/*
 
 		public function getAtributo($attr){
@@ -79,16 +87,26 @@
 	print_r($filho);
 	echo '</pre>';
 
+	$filho->executarAcao();
+
 
 	//Exibir o s metodos do objeto
 
 	/*get_class_methods Função nativa do PHP Expera receber por parametro um objeto e retorna um array com metodos internos do objeto
 	*/
 
+	/*
+
 	echo '<pre>';
 	print_r(get_class_methods($filho)); 
 	echo '</pre>';
 
+
+	echo $filho->__get('nome');
+
+	$filho->__set('nome','Jamiltom');
+	echo '<br />';
+	echo $filho->__get('nome');
 
 
 	//echo $filho->__get('humor');
