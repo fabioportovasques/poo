@@ -49,6 +49,9 @@
 	$mensagem->__set('mensagem',$_POST['mensagem']);
 
 
+	print_r($mensagem);
+
+	
 
 	if (!$mensagem->mensagemValida()) {
 		echo 'Mensagem inválida';
@@ -70,7 +73,7 @@
 
 	    //Recipients
 	    $mail->setFrom('fabioportovasques321@gmail.com', 'Web completo remetente');
-	    $mail->addAddress('fabioportovasques321@gmail.com', 'web completo destinatário');     // Add a recipient
+	    $mail->addAddress($mensagem->__get('para'));     // Add a recipient
 	    //$mail->addReplyTo('info@example.com', 'Information');
 	    //$mail->addCC('cc@example.com');
 	    //$mail->addBCC('bcc@example.com');
@@ -81,12 +84,12 @@
 
 	    // Content
 	    $mail->isHTML(true);                                  // Set email format to HTML
-	    $mail->Subject = 'oi, eu sou o assunto';
-	    $mail->Body    = 'oi, eu sou o conteúdo do <strong>e-mail</strong>.';
-	    $mail->AltBody = 'oi, eu sou o conteúdo do e-mail.';
+	    $mail->Subject = $mensagem->__get('assunto');
+	    $mail->Body    = $mensagem->__get('mensagem');
+	    $mail->AltBody = 'é necessário utilizar um cliente que suporte HTML';
 
 	    $mail->send();
-	    echo 'Message has been sent';
+	    echo 'Email enviado com sucesso!!!';
 	} catch (Exception $e) {
 		echo 'Não foi possível enviar o email!!';
 		echo 'Detalhes do Erro:' . $mail->ErrorInfo;
@@ -100,3 +103,5 @@
 	print_r($mensagem);
 	echo '</pre>';
 	*/
+
+	
